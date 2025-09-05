@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
+import PropTypes from 'prop-types';
 import './ProductList.css'
 import CartItem from './CartItem';
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the Plants page
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
@@ -14,6 +15,19 @@ function ProductList({ onHomeClick }) {
     const getTotalCartItems = () => {
         return cart.reduce((total, item) => total + item.quantity, 0);
     };
+
+    // Sync addedToCart state with actual cart contents
+    useEffect(() => {
+        const cartItemNames = cart.map(item => item.name);
+        const newAddedToCart = {};
+        
+        // Mark items as added if they're in the cart
+        cartItemNames.forEach(name => {
+            newAddedToCart[name] = true;
+        });
+        
+        setAddedToCart(newAddedToCart);
+    }, [cart]);
 
     const plantsArray = [
         {
@@ -254,8 +268,7 @@ function ProductList({ onHomeClick }) {
     };
     const handlePlantsClick = (e) => {
         e.preventDefault();
-        setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-        setShowCart(false); // Hide the cart when navigating to About Us
+        setShowCart(false); // Hide the cart when navigating to Plants
     };
 
     const handleContinueShopping = (e) => {
@@ -265,10 +278,7 @@ function ProductList({ onHomeClick }) {
 
     const handleAddToCart = (plant) => {
         dispatch(addItem(plant));
-        setAddedToCart((prevState) => ({
-            ...prevState,
-            [plant.name]: true
-        }));
+        // Note: addedToCart state will be updated automatically via useEffect
     };
     return (
         <div>
@@ -323,5 +333,9 @@ function ProductList({ onHomeClick }) {
         </div>
     );
 }
+
+ProductList.propTypes = {
+    onHomeClick: PropTypes.func.isRequired,
+};
 
 export default ProductList;
