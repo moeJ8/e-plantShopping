@@ -12,17 +12,14 @@ function ProductList({ onHomeClick }) {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
     
-    // Calculate total number of items in cart
     const getTotalCartItems = () => {
         return cart.reduce((total, item) => total + item.quantity, 0);
     };
 
-    // Sync addedToCart state with actual cart contents
     useEffect(() => {
         const cartItemNames = cart.map(item => item.name);
         const newAddedToCart = {};
-        
-        // Mark items as added if they're in the cart
+
         cartItemNames.forEach(name => {
             newAddedToCart[name] = true;
         });
@@ -268,11 +265,11 @@ function ProductList({ onHomeClick }) {
 
     const handleCartClick = (e) => {
         e.preventDefault();
-        setShowCart(true); // Set showCart to true when cart icon is clicked
+        setShowCart(true); 
     };
     const handlePlantsClick = (e) => {
         e.preventDefault();
-        setShowCart(false); // Hide the cart when navigating to Plants
+        setShowCart(false); 
     };
 
     const handleContinueShopping = (e) => {
@@ -282,7 +279,6 @@ function ProductList({ onHomeClick }) {
 
     const handleAddToCart = (plant) => {
         dispatch(addItem(plant));
-        // Note: addedToCart state will be updated automatically via useEffect
     };
     return (
         <div>

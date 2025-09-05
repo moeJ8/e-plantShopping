@@ -60,7 +60,6 @@ const CheckoutModal = ({ isOpen, onClose }) => {
   };
 
   const handleClose = () => {
-    // If we're closing from the complete step and cart isn't already empty, clear it
     if (currentStep === 'complete' && cart.length > 0) {
       dispatch(clearCart());
     }
