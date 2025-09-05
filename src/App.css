@@ -19,7 +19,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
+  background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2132&q=80');
   background-size: 100% 100%;
   background-position: center;
   filter: brightness(0.8);
@@ -74,19 +74,32 @@
 }
 
 .get-started-button {
-  padding: 15px 25px;
-  font-size: 23px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
   border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
   margin-top: 40px;
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  position: relative;
+  overflow: hidden;
 }
 
 .get-started-button:hover {
-  background-color: #45a049;
+  background: linear-gradient(135deg, #45a049, #4CAF50);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+}
+
+.get-started-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
 }
 
 /* ProductList.css */
@@ -99,7 +112,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.2);
   /* Adjust background opacity as needed */
   transition: top 0.5s ease;
   /* Smooth transition for top property */
@@ -107,7 +120,7 @@
   /* Enable vertical scrolling */
   z-index: 2;
   /* Ensure it's above landing page content */
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
 }
 
 .product-list-container.visible {

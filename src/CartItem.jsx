@@ -57,7 +57,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   return (
     <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <div className="total_cart_amount">Total Cart Amount: ${calculateTotalAmount()}</div>
       <div>
         {cart.length === 0 ? (
           <div className="empty-cart-message">
